@@ -2,11 +2,13 @@ package com.api.VirtualLibrary.adapters.output.response;
 
 import com.api.VirtualLibrary.domain.entities.Livro;
 
+import java.math.BigDecimal;
+
 public class LivroResponse {
 
     private final Long id;
     private final String titulo;
-    private final String preco;
+    private final BigDecimal preco;
     private final String isbn;
 
     public LivroResponse(Livro livro) {
@@ -24,11 +26,12 @@ public class LivroResponse {
         return titulo;
     }
 
-    public String getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
     public String getIsbn() {
         return isbn;
     }
+
 }

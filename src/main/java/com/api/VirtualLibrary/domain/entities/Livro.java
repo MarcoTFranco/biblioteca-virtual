@@ -5,16 +5,22 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.math.BigDecimal;
+
 @Entity
 public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    private String preco;
+    private BigDecimal preco;
     private String isbn;
 
-    public Livro(String titulo, String preco, String isbn) {
+    @Deprecated
+    public Livro() {
+    }
+
+    public Livro(String titulo, BigDecimal preco, String isbn) {
         this.titulo = titulo;
         this.preco = preco;
         this.isbn = isbn;
@@ -28,11 +34,12 @@ public class Livro {
         return titulo;
     }
 
-    public String getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
     public String getIsbn() {
         return isbn;
     }
+
 }
