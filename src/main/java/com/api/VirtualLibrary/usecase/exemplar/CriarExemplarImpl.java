@@ -30,8 +30,9 @@ public class CriarExemplarImpl implements CriarExemplar {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         Exemplar exemplar = new Exemplar(request.getTipoDeCirculacao(), livro);
-
         exemplarRepository.save(exemplar);
+        livro.addExemplar(exemplar);
+
         return exemplar;
     }
 }

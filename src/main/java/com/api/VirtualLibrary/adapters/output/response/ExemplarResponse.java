@@ -6,22 +6,23 @@ import com.api.VirtualLibrary.domain.enums.TipoDeCirculacao;
 public class ExemplarResponse {
     private Long id;
     private TipoDeCirculacao tipoDeCirculacao;
-    private LivroResponse livro;
+    private String tituloDolivro;
 
-    public ExemplarResponse (Exemplar exemplar) {
+    public ExemplarResponse(Exemplar exemplar) {
         this.id = exemplar.getId();
         this.tipoDeCirculacao = exemplar.getTipoDeCirculacao();
-        this.livro = new LivroResponse(exemplar.getLivro());
+        this.tituloDolivro = exemplar.getLivro().getTitulo();
     }
 
     public Long getId() {
         return id;
     }
+
     public TipoDeCirculacao getTipoDeCirculacao() {
         return tipoDeCirculacao;
     }
 
-    public LivroResponse getLivro() {
-        return livro;
+    public String getTituloDolivro() {
+        return tituloDolivro;
     }
 }

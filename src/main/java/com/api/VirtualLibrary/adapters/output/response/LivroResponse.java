@@ -6,10 +6,10 @@ import java.math.BigDecimal;
 
 public class LivroResponse {
 
-    private final Long id;
-    private final String titulo;
-    private final BigDecimal preco;
-    private final String isbn;
+    private Long id;
+    private String titulo;
+    private BigDecimal preco;
+    private String isbn;
 
     public LivroResponse(Livro livro) {
         this.id = livro.getId();
@@ -33,5 +33,4 @@ public class LivroResponse {
     public String getIsbn() {
         return isbn;
     }
-
 }

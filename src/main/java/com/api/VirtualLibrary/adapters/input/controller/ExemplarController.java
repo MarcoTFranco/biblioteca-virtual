@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/api/v1/")
+@RequestMapping(value = "/api/v1")
 public class ExemplarController {
 
     private CriarExemplarImpl criarExemplar;
@@ -17,7 +17,7 @@ public class ExemplarController {
         this.criarExemplar = criarExemplar;
     }
 
-    @PostMapping("livro/{isbn}/exemplares")
+    @PostMapping("/livro/{isbn}/exemplares")
     public ResponseEntity<ExemplarResponse> cadastroExemplar(@PathVariable("isbn") String isbn,
                                                              @RequestBody ExemplarRequest request) {
         Exemplar exemplar = criarExemplar.criarExemplar(isbn, request);
