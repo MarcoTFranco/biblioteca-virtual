@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 public class Emprestimo {
@@ -59,7 +60,24 @@ public class Emprestimo {
         return horarioDoEmprestimo;
     }
 
-    public boolean eRestrito() {
-        return this.exemplar.getTipoDeCirculacao().equals(TipoDeCirculacao.restrito);
+    public LocalDate dataDeDevolucao() {
+        return this.horarioDoEmprestimo.plusDays(this.diasDeEmprestimo);
+    }
+
+    public boolean estaEmAtraso() {
+        return this.dataDeDevolucao().isBefore(LocalDate.now());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Emprestimo that = (Emprestimo) o;
+        return id.equals(that.id) && usuario.equals(that.usuario) && exemplar.equals(that.exemplar);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, usuario, exemplar);
     }
 }

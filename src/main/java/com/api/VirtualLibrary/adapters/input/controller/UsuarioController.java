@@ -3,7 +3,9 @@ package com.api.VirtualLibrary.adapters.input.controller;
 import com.api.VirtualLibrary.adapters.input.request.UsuarioRequest;
 import com.api.VirtualLibrary.adapters.output.response.UsuarioResponse;
 import com.api.VirtualLibrary.domain.entities.Usuario;
+import com.api.VirtualLibrary.usecase.usuario.CriarUsuario;
 import com.api.VirtualLibrary.usecase.usuario.CriarUsuarioImpl;
+import com.api.VirtualLibrary.usecase.usuario.MostrarUsuario;
 import com.api.VirtualLibrary.usecase.usuario.MostrarUsuarioImpl;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -16,12 +18,12 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/usuarios")
 public class UsuarioController {
 
-    private CriarUsuarioImpl dadosNovoUsuario;
+    private CriarUsuario dadosNovoUsuario;
 
-    private MostrarUsuarioImpl mostrarUsuario;
+    private MostrarUsuario mostrarUsuario;
 
 
-    public UsuarioController(CriarUsuarioImpl dadosNovoUsuario, MostrarUsuarioImpl mostrarUsuario) {
+    public UsuarioController(CriarUsuario dadosNovoUsuario, MostrarUsuario mostrarUsuario) {
         this.dadosNovoUsuario = dadosNovoUsuario;
         this.mostrarUsuario = mostrarUsuario;
     }

@@ -1,9 +1,12 @@
 package com.api.VirtualLibrary.domain.entities;
 
+import com.api.VirtualLibrary.domain.enums.Disponibilidade;
 import com.api.VirtualLibrary.domain.enums.TipoDeCirculacao;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+
+import java.util.Objects;
 
 @Entity
 public class Exemplar {
@@ -15,6 +18,7 @@ public class Exemplar {
     @ManyToOne
     @NotNull
     private Livro livro;
+    private Disponibilidade disponibilidade;
 
     @Deprecated
     public Exemplar() {
@@ -24,6 +28,7 @@ public class Exemplar {
                     @NotNull @Valid Livro livro) {
         this.tipoDeCirculacao = tipoDeCirculacao;
         this.livro = livro;
+        this.setDisponibilidade(Disponibilidade.disponivel);
     }
 
 
@@ -39,7 +44,28 @@ public class Exemplar {
         return livro;
     }
 
+    public Disponibilidade getDisponibilidade() {
+        return disponibilidade;
+    }
+
+    public void setDisponibilidade(Disponibilidade disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
+
     public boolean eRestrito(TipoDeCirculacao tipoDeCirculacao) {
         return this.tipoDeCirculacao.equals(tipoDeCirculacao);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Exemplar exemplar = (Exemplar) o;
+        return tipoDeCirculacao == exemplar.tipoDeCirculacao && Objects.equals(livro, exemplar.livro);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tipoDeCirculacao, livro);
     }
 }

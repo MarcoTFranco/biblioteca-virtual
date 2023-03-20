@@ -1,4 +1,4 @@
-package com.api.VirtualLibrary.service.validator;
+package com.api.VirtualLibrary.service.validator.emprestimo;
 
 import com.api.VirtualLibrary.adapters.input.request.EmprestimoRequest;
 import com.api.VirtualLibrary.domain.entities.Usuario;

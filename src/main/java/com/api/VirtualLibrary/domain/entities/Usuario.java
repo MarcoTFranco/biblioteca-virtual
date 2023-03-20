@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Usuario {
@@ -25,6 +26,9 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.MERGE)
     @JsonIgnore
     private List<Emprestimo> emprestimos = new ArrayList<>();
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.MERGE)
+    @JsonIgnore
+    private List<Devolucao> devolucaos = new ArrayList<>();
 
     @Deprecated
     public Usuario() {
@@ -58,11 +62,19 @@ public class Usuario {
         return emprestimos;
     }
 
+    public List<Devolucao> getDevolucaos() {
+        return devolucaos;
+    }
+
     public void addEmprestimo(Emprestimo emprestimo) {
         this.emprestimos.add(emprestimo);
     }
 
-    public boolean verificaTipoUsuario (TipoUsuario tipoUsuario) {
+    public void addDevolucao(Devolucao devolucao) {
+        this.devolucaos.add(devolucao);
+    }
+
+    public boolean verificaTipoUsuario(TipoUsuario tipoUsuario) {
         return this.tipoUsuario.equals(tipoUsuario);
     }
 
@@ -70,5 +82,16 @@ public class Usuario {
         return emprestimos.size() + 1 > 5;
     }
 
+    public boolean temEmprestimoEmAtraso() {
+        return emprestimos.stream().anyMatch(Emprestimo::estaEmAtraso);
+    }
+    public boolean existeDevolucao(Emprestimo emprestimo) {
+        return this.devolucaos.stream()
+                .anyMatch(devolucao -> devolucao.getEmprestimo().equals(emprestimo));
+    }
 
+    public boolean temEmprestimo(Emprestimo emprestimo) {
+        return this.emprestimos.stream()
+                .anyMatch(emprestimo1 -> emprestimo1.equals(emprestimo));
+    }
 }

@@ -5,7 +5,8 @@ import com.api.VirtualLibrary.adapters.output.repositories.EmprestimoRepository;
 import com.api.VirtualLibrary.domain.entities.Emprestimo;
 import com.api.VirtualLibrary.domain.entities.Exemplar;
 import com.api.VirtualLibrary.domain.entities.Usuario;
-import com.api.VirtualLibrary.service.validator.UsuarioPesquisadorNaoPrecisaPassarOTempo;
+import com.api.VirtualLibrary.domain.enums.Disponibilidade;
+import com.api.VirtualLibrary.service.validator.emprestimo.UsuarioPesquisadorNaoPrecisaPassarOTempo;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,7 @@ public class CriarEmprestimoImpl implements CriarEmprestimo {
         Emprestimo emprestimo = new Emprestimo(usuario, exemplar, request.getDiasDeEmprestimo());
         emprestimoRepository.save(emprestimo);
         usuario.addEmprestimo(emprestimo);
+        exemplar.setDisponibilidade(Disponibilidade.alugado);
 
         return emprestimo;
 

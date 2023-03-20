@@ -3,6 +3,7 @@ package com.api.VirtualLibrary.adapters.input.controller;
 import com.api.VirtualLibrary.adapters.input.request.ExemplarRequest;
 import com.api.VirtualLibrary.adapters.output.response.ExemplarResponse;
 import com.api.VirtualLibrary.domain.entities.Exemplar;
+import com.api.VirtualLibrary.usecase.exemplar.CriarExemplar;
 import com.api.VirtualLibrary.usecase.exemplar.CriarExemplarImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/v1")
 public class ExemplarController {
 
-    private CriarExemplarImpl criarExemplar;
+    private CriarExemplar criarExemplar;
 
     public ExemplarController(CriarExemplarImpl criarExemplar) {
         this.criarExemplar = criarExemplar;

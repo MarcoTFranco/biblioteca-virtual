@@ -1,6 +1,6 @@
 package com.api.VirtualLibrary.service.validator;
 
-import com.api.VirtualLibrary.service.annotations.UniqueValue;
+import com.api.VirtualLibrary.service.annotations.ExistsId;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.validation.ConstraintValidator;
@@ -9,27 +9,26 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
-public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Object> {
-
+public class ExistsIdValidator implements ConstraintValidator<ExistsId, Object> {
     @PersistenceContext
     private EntityManager manager;
-    private String field;
+
     private Class<?> className;
 
     @Override
-    public void initialize(UniqueValue constraintAnnotation) {
-        field = constraintAnnotation.fieldName();
+    public void initialize(ExistsId constraintAnnotation) {
         className = constraintAnnotation.className();
     }
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         List<?> list = manager
-                .createQuery("select id from " + className.getName() + " where " + field + " =:value")
+                .createQuery("select id from " + className.getName() + " where id =:value")
                 .setParameter("value", value)
                 .getResultList();
-        Assert.isTrue(list.size() <= 1,
-                "Foi encontrado " + className.getName() + " com o " + field + " repetido");
-        return list.isEmpty();
+        if (value == null || list.size() > 0) {
+            return true;
+        }
+        return false;
     }
 }

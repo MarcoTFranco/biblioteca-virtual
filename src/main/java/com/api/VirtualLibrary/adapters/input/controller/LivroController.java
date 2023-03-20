@@ -3,6 +3,7 @@ package com.api.VirtualLibrary.adapters.input.controller;
 import com.api.VirtualLibrary.adapters.input.request.LivroRequest;
 import com.api.VirtualLibrary.adapters.output.response.LivroResponse;
 import com.api.VirtualLibrary.domain.entities.Livro;
+import com.api.VirtualLibrary.usecase.livro.CriarLivro;
 import com.api.VirtualLibrary.usecase.livro.CriarLivroImpl;
 import com.api.VirtualLibrary.usecase.livro.ListarLivrosImpl;
 import jakarta.validation.Valid;
@@ -16,7 +17,7 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/livros")
 public class LivroController {
 
-    private CriarLivroImpl dadosNovoLivro;
+    private CriarLivro dadosNovoLivro;
 
     private ListarLivrosImpl listarLivro;
 

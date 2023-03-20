@@ -11,12 +11,14 @@ public class UsuarioResponse {
     private String email;
     private TipoUsuario tipoUsuario;
     private List<EmprestimoResponse> emprestimos = new ArrayList<>();
+    private List<DevolucaoResponse> devolucoes = new ArrayList<>();
 
     public UsuarioResponse(Usuario usuario) {
         this.nome = usuario.getNome();
         this.email = usuario.getEmail();
         this.tipoUsuario = usuario.getTipoUsuario();
         this.emprestimos.addAll(usuario.getEmprestimos().stream().map(EmprestimoResponse::new).toList());
+        this.devolucoes.addAll(usuario.getDevolucaos().stream().map(DevolucaoResponse::new).toList());
     }
 
     public String getNome() {
@@ -33,5 +35,9 @@ public class UsuarioResponse {
 
     public List<EmprestimoResponse> getEmprestimos() {
         return emprestimos;
+    }
+
+    public List<DevolucaoResponse> getDevolucoes() {
+        return devolucoes;
     }
 }
