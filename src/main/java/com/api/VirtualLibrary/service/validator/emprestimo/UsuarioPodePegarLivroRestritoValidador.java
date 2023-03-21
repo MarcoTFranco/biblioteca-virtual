@@ -3,8 +3,6 @@ package com.api.VirtualLibrary.service.validator.emprestimo;
 import com.api.VirtualLibrary.adapters.input.request.EmprestimoRequest;
 import com.api.VirtualLibrary.domain.entities.Exemplar;
 import com.api.VirtualLibrary.domain.entities.Usuario;
-import com.api.VirtualLibrary.domain.enums.TipoDeCirculacao;
-import com.api.VirtualLibrary.domain.enums.TipoUsuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
@@ -36,12 +34,8 @@ public class UsuarioPodePegarLivroRestritoValidador implements Validator {
         Assert.isTrue(usuario != null, "O usuario tem que existir");
         Assert.isTrue(exemplar != null, "O exemplar tem que existir");
 
-        if (usuario.verificaTipoUsuario(TipoUsuario.padrao) && exemplar.eRestrito(TipoDeCirculacao.restrito)) {
+        if (!usuario.podePegarLivro(exemplar.getTipoDeCirculacao())) {
             errors.reject("Esse tipo de usuario não pode pegar livros restritos");
-        }
-
-        if (usuario.verificaTipoUsuario(TipoUsuario.padrao) && usuario.aceitaMaisUmEmprestimo()) {
-            errors.reject("Você pode ter apenas 5 emprestimos por vez");
         }
     }
 }

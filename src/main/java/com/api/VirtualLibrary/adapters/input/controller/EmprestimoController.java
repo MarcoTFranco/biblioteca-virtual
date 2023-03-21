@@ -6,7 +6,6 @@ import com.api.VirtualLibrary.domain.entities.Emprestimo;
 import com.api.VirtualLibrary.service.validator.VerificacaoBasicaEmprestimoValidator;
 import com.api.VirtualLibrary.usecase.emprestimo.CriarEmprestimo;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +13,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/api/v1/emprestimos")
 public class EmprestimoController {
-    @Autowired
+
     private VerificacaoBasicaEmprestimoValidator verificacaoBasicaEmprestimoValidator;
-    @Autowired
+
     private CriarEmprestimo dadosNovoEmprestimo;
+
+    public EmprestimoController(VerificacaoBasicaEmprestimoValidator verificacaoBasicaEmprestimoValidator,
+                                CriarEmprestimo dadosNovoEmprestimo) {
+        this.verificacaoBasicaEmprestimoValidator = verificacaoBasicaEmprestimoValidator;
+        this.dadosNovoEmprestimo = dadosNovoEmprestimo;
+    }
 
     @InitBinder
     private void init(WebDataBinder binder) {

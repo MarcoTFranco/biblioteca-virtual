@@ -4,9 +4,7 @@ import com.api.VirtualLibrary.adapters.input.request.UsuarioRequest;
 import com.api.VirtualLibrary.adapters.output.response.UsuarioResponse;
 import com.api.VirtualLibrary.domain.entities.Usuario;
 import com.api.VirtualLibrary.usecase.usuario.CriarUsuario;
-import com.api.VirtualLibrary.usecase.usuario.CriarUsuarioImpl;
-import com.api.VirtualLibrary.usecase.usuario.MostrarUsuario;
-import com.api.VirtualLibrary.usecase.usuario.MostrarUsuarioImpl;
+import com.api.VirtualLibrary.usecase.usuario.ListarUsuario;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +18,12 @@ public class UsuarioController {
 
     private CriarUsuario dadosNovoUsuario;
 
-    private MostrarUsuario mostrarUsuario;
+    private ListarUsuario listarUsuario;
 
 
-    public UsuarioController(CriarUsuario dadosNovoUsuario, MostrarUsuario mostrarUsuario) {
+    public UsuarioController(CriarUsuario dadosNovoUsuario, ListarUsuario listarUsuario) {
         this.dadosNovoUsuario = dadosNovoUsuario;
-        this.mostrarUsuario = mostrarUsuario;
+        this.listarUsuario = listarUsuario;
     }
 
     @PostMapping
@@ -37,7 +35,7 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<List<UsuarioResponse>> mostrarUsuarios () {
-        List<UsuarioResponse> responseList = mostrarUsuario.mostrarUsuarios()
+        List<UsuarioResponse> responseList = listarUsuario.mostrarUsuarios()
                 .stream()
                 .map(UsuarioResponse::new)
                 .toList();

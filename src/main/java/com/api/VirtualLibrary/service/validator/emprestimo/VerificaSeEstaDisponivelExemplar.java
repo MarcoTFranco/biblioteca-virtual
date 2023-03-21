@@ -2,7 +2,6 @@ package com.api.VirtualLibrary.service.validator.emprestimo;
 
 import com.api.VirtualLibrary.adapters.input.request.EmprestimoRequest;
 import com.api.VirtualLibrary.domain.entities.Exemplar;
-import com.api.VirtualLibrary.domain.entities.Usuario;
 import com.api.VirtualLibrary.domain.enums.Disponibilidade;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;

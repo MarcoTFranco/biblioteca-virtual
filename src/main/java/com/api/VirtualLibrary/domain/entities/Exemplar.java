@@ -28,7 +28,7 @@ public class Exemplar {
                     @NotNull @Valid Livro livro) {
         this.tipoDeCirculacao = tipoDeCirculacao;
         this.livro = livro;
-        this.setDisponibilidade(Disponibilidade.disponivel);
+        this.disponibilidade = Disponibilidade.disponivel;
     }
 
 
@@ -52,7 +52,7 @@ public class Exemplar {
         this.disponibilidade = disponibilidade;
     }
 
-    public boolean eRestrito(TipoDeCirculacao tipoDeCirculacao) {
+    public boolean isRestrito(TipoDeCirculacao tipoDeCirculacao) {
         return this.tipoDeCirculacao.equals(tipoDeCirculacao);
     }
 

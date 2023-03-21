@@ -1,5 +1,6 @@
 package com.api.VirtualLibrary.domain.entities;
 
+import com.api.VirtualLibrary.domain.enums.TipoDeCirculacao;
 import com.api.VirtualLibrary.domain.enums.TipoUsuario;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -9,7 +10,6 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class Usuario {
@@ -79,19 +79,34 @@ public class Usuario {
     }
 
     public boolean aceitaMaisUmEmprestimo() {
-        return emprestimos.size() + 1 > 5;
+        return tipoUsuario.podeEmprestar(this);
     }
 
     public boolean temEmprestimoEmAtraso() {
         return emprestimos.stream().anyMatch(Emprestimo::estaEmAtraso);
     }
-    public boolean existeDevolucao(Emprestimo emprestimo) {
-        return this.devolucaos.stream()
-                .anyMatch(devolucao -> devolucao.getEmprestimo().equals(emprestimo));
+
+    public boolean usuarioEDono(Usuario usuario) {
+        return this.equals(usuario);
     }
 
     public boolean temEmprestimo(Emprestimo emprestimo) {
-        return this.emprestimos.stream()
-                .anyMatch(emprestimo1 -> emprestimo1.equals(emprestimo));
+        if (usuarioEDono(emprestimo.getUsuario())) {
+            return this.emprestimos.stream()
+                    .anyMatch(emprestimo1 -> emprestimo1.equals(emprestimo));
+        }
+        return false;
+    }
+
+    public boolean temDevolucao(Emprestimo emprestimo) {
+        if (usuarioEDono(emprestimo.getUsuario())) {
+            return this.devolucaos.stream()
+                    .anyMatch(devolucao -> devolucao.getEmprestimo().equals(emprestimo));
+        }
+        return false;
+    }
+
+    public boolean podePegarLivro(TipoDeCirculacao tipoDeCirculacao) {
+        return tipoUsuario.podePegar(tipoDeCirculacao);
     }
 }

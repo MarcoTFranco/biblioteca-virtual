@@ -36,11 +36,7 @@ public class UsuarioPodePegarMaisUmLivroValidador implements Validator {
         Assert.isTrue(usuario != null, "O usuario tem que existir");
         Assert.isTrue(exemplar != null, "O exemplar tem que existir");
 
-        if (usuario.verificaTipoUsuario(TipoUsuario.padrao) && exemplar.eRestrito(TipoDeCirculacao.restrito)) {
-            errors.reject("Esse tipo de usuario não pode pegar livros restritos");
-        }
-
-        if (usuario.verificaTipoUsuario(TipoUsuario.padrao) && usuario.aceitaMaisUmEmprestimo()) {
+        if (!usuario.aceitaMaisUmEmprestimo()) {
             errors.reject("Você pode ter apenas 5 emprestimos por vez");
         }
     }

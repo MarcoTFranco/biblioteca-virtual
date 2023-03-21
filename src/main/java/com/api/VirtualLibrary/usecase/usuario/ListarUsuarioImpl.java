@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MostrarUsuarioImpl implements MostrarUsuario {
+public class ListarUsuarioImpl implements ListarUsuario {
 
     private UsuarioRepository usuarioRepository;
 
-    public MostrarUsuarioImpl(UsuarioRepository usuarioRepository) {
+    public ListarUsuarioImpl(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 

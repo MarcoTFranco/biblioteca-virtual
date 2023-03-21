@@ -31,7 +31,7 @@ public class SoPodeDevolver1VezValidator implements Validator {
         Usuario usuario = manager.find(Usuario.class, devolucaoRequest.getIdUsuario());
         Emprestimo emprestimo = manager.find(Emprestimo.class, devolucaoRequest.getIdEmprestimo());
 
-        if (usuario.existeDevolucao(emprestimo)) {
+        if (usuario.temDevolucao(emprestimo)) {
             errors.rejectValue("idEmprestimo", null,
                     "Este empréstimo já foi devolvido");
         }

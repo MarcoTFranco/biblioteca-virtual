@@ -4,7 +4,7 @@ import com.api.VirtualLibrary.domain.entities.Usuario;
 
 import java.util.List;
 
-public interface MostrarUsuario {
+public interface ListarUsuario {
 
     List<Usuario> mostrarUsuarios();
 

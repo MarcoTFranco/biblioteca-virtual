@@ -36,7 +36,7 @@ public class TempoDeEntregaValidator implements Validator {
 
         if (usuario.temEmprestimoEmAtraso()) {
             errors.rejectValue("dataDeDevolucao", null,
-                    "A data de devolução não pode ser menor que a data de empréstimo");
+                    "O usuario tem um emprestimo em atraso, ele não pode pegar outro livro");
         }
 
     }

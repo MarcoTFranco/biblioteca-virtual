@@ -1,6 +1,5 @@
 package com.api.VirtualLibrary.domain.entities;
 
-import com.api.VirtualLibrary.domain.enums.TipoDeCirculacao;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.FutureOrPresent;
@@ -60,12 +59,10 @@ public class Emprestimo {
         return horarioDoEmprestimo;
     }
 
-    public LocalDate dataDeDevolucao() {
-        return this.horarioDoEmprestimo.plusDays(this.diasDeEmprestimo);
-    }
 
     public boolean estaEmAtraso() {
-        return this.dataDeDevolucao().isBefore(LocalDate.now());
+        LocalDate dataDeDevolucao = this.horarioDoEmprestimo.plusDays(this.diasDeEmprestimo);
+        return dataDeDevolucao.isBefore(LocalDate.now());
     }
 
     @Override
