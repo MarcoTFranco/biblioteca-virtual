@@ -17,6 +17,7 @@ public class LivroRequest {
     @NotBlank
     @UniqueValue(fieldName = "isbn", className = Livro.class)
     private String isbn;
+
     @Deprecated
     public LivroRequest() {
     }
@@ -33,23 +34,12 @@ public class LivroRequest {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
     public BigDecimal getPreco() {
         return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
     }
 
     public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
 }

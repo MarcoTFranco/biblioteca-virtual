@@ -5,21 +5,14 @@ import com.api.VirtualLibrary.domain.entities.Livro;
 import java.math.BigDecimal;
 
 public class LivroResponse {
-
-    private Long id;
-    private String titulo;
-    private BigDecimal preco;
-    private String isbn;
+    private final String titulo;
+    private final BigDecimal preco;
+    private final String isbn;
 
     public LivroResponse(Livro livro) {
-        this.id = livro.getId();
         this.titulo = livro.getTitulo();
         this.preco = livro.getPreco();
         this.isbn = livro.getIsbn();
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getTitulo() {

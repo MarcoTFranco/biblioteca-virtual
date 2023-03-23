@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/v1")
 public class ExemplarController {
 
-    private CriarExemplar criarExemplar;
+    private final CriarExemplar dadosExemplar;
 
-    public ExemplarController(CriarExemplarImpl criarExemplar) {
-        this.criarExemplar = criarExemplar;
+    public ExemplarController(CriarExemplarImpl dadosExemplar) {
+        this.dadosExemplar = dadosExemplar;
     }
 
     @PostMapping("/livro/{isbn}/exemplares")
     public ResponseEntity<ExemplarResponse> cadastroExemplar(@PathVariable("isbn") String isbn,
                                                              @RequestBody ExemplarRequest request) {
-        Exemplar exemplar = criarExemplar.criarExemplar(isbn, request);
+        Exemplar exemplar = dadosExemplar.criarExemplar(isbn, request);
         ExemplarResponse exemplarResponse = new ExemplarResponse(exemplar);
         return ResponseEntity.ok().body(exemplarResponse);
     }

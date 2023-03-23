@@ -13,9 +13,9 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class CriarExemplarImpl implements CriarExemplar {
 
-    private ExemplarRepository exemplarRepository;
+    private final ExemplarRepository exemplarRepository;
 
-    private LivroRepository livroRepository;
+    private final LivroRepository livroRepository;
 
     public CriarExemplarImpl(ExemplarRepository exemplarRepository, LivroRepository livroRepository) {
         this.exemplarRepository = exemplarRepository;

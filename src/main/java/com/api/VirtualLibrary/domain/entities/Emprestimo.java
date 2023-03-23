@@ -59,7 +59,6 @@ public class Emprestimo {
         return horarioDoEmprestimo;
     }
 
-
     public boolean estaEmAtraso() {
         LocalDate dataDeDevolucao = this.horarioDoEmprestimo.plusDays(this.diasDeEmprestimo);
         return dataDeDevolucao.isBefore(LocalDate.now());

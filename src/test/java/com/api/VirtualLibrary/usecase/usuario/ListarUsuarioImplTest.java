@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class ListarUsuarioImplTest {
 
-    private UsuarioRepository usuarioRepository = Mockito.mock(UsuarioRepository.class);
+    private final UsuarioRepository usuarioRepository = Mockito.mock(UsuarioRepository.class);
 
     private static Stream<List<Usuario>> generator() {
         return Stream.of(

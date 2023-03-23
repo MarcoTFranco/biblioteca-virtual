@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioResponse {
-    private String nome;
-    private String email;
-    private TipoUsuario tipoUsuario;
-    private List<EmprestimoResponse> emprestimos = new ArrayList<>();
-    private List<DevolucaoResponse> devolucoes = new ArrayList<>();
+    private final String nome;
+    private final String email;
+    private final TipoUsuario tipoUsuario;
+    private final List<EmprestimoResponse> emprestimos = new ArrayList<>();
+    private final List<DevolucaoResponse> devolucoes = new ArrayList<>();
 
     public UsuarioResponse(Usuario usuario) {
         this.nome = usuario.getNome();

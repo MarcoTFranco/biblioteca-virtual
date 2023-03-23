@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/v1/emprestimos")
 public class EmprestimoController {
 
-    private VerificacaoBasicaEmprestimoValidator verificacaoBasicaEmprestimoValidator;
+    private final VerificacaoBasicaEmprestimoValidator verificacaoBasicaEmprestimoValidator;
 
-    private CriarEmprestimo dadosNovoEmprestimo;
+    private final CriarEmprestimo dadosNovoEmprestimo;
 
     public EmprestimoController(VerificacaoBasicaEmprestimoValidator verificacaoBasicaEmprestimoValidator,
                                 CriarEmprestimo dadosNovoEmprestimo) {

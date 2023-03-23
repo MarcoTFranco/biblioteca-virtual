@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 class ListarLivrosImplTest {
 
-    private LivroRepository livroRepository = Mockito.mock(LivroRepository.class);
+    private final LivroRepository livroRepository = Mockito.mock(LivroRepository.class);
 
     private static Stream<List<Livro>> generator() {
         return Stream.of(
@@ -28,8 +28,8 @@ class ListarLivrosImplTest {
     @Test
     @DisplayName("Deve retornar uma lista vazia de livros")
     void test1() {
-        Mockito.when(livroRepository.findAll()).thenReturn(null);
-        Assertions.assertEquals(null, livroRepository.findAll());
+        Mockito.when(livroRepository.findAll()).thenReturn(List.of());
+        Assertions.assertEquals(List.of(), livroRepository.findAll());
     }
 
     @ParameterizedTest

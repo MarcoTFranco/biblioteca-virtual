@@ -5,10 +5,10 @@ import com.api.VirtualLibrary.domain.entities.Emprestimo;
 import java.time.LocalDate;
 
 public class EmprestimoResponse {
-    private String nomeUsuario;
-    private ExemplarResponse exemplar;
-    private Integer diasDeEmprestimo;
-    private LocalDate horarioDoEmprestimo;
+    private final String nomeUsuario;
+    private final ExemplarResponse exemplar;
+    private final Integer diasDeEmprestimo;
+    private final LocalDate horarioDoEmprestimo;
 
     public EmprestimoResponse(Emprestimo emprestimo) {
         this.nomeUsuario = emprestimo.getUsuario().getNome();

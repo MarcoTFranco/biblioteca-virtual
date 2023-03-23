@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Range;
 public class EmprestimoRequest {
     @Range(min = 1, max = 60)
     private Integer diasDeEmprestimo;
-    @NotNull()
+    @NotNull
     private Long usuarioId;
     @NotNull
     private Long exemplarId;

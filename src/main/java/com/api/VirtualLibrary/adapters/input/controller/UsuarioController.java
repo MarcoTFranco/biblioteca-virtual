@@ -16,9 +16,9 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/usuarios")
 public class UsuarioController {
 
-    private CriarUsuario dadosNovoUsuario;
+    private final CriarUsuario dadosNovoUsuario;
 
-    private ListarUsuario listarUsuario;
+    private final ListarUsuario listarUsuario;
 
 
     public UsuarioController(CriarUsuario dadosNovoUsuario, ListarUsuario listarUsuario) {

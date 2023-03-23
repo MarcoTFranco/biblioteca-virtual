@@ -4,8 +4,8 @@ import com.api.VirtualLibrary.domain.entities.Devolucao;
 
 public class DevolucaoResponse {
 
-    private String nomeUsuario;
-    private String nomeLivro;
+    private final String nomeUsuario;
+    private final String nomeLivro;
 
     public DevolucaoResponse(Devolucao devolucao) {
         this.nomeUsuario = devolucao.getUsuario().getNome();

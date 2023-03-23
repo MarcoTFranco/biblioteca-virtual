@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/v1")
 public class DevolucaoController {
 
-    private CriarDevolucao dadosDevolucao;
+    private final CriarDevolucao dadosDevolucao;
 
-    private VerificacaoBasicaDevolucaoValidator verificacaoBasicaDevolucaoValidator;
+    private final VerificacaoBasicaDevolucaoValidator verificacaoBasicaDevolucaoValidator;
 
 
     public DevolucaoController(CriarDevolucao dadosDevolucao,

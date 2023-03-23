@@ -7,7 +7,7 @@ import com.api.VirtualLibrary.domain.entities.Exemplar;
 import com.api.VirtualLibrary.domain.entities.Usuario;
 import com.api.VirtualLibrary.domain.enums.Disponibilidade;
 import com.api.VirtualLibrary.service.validator.emprestimo.UsuarioPesquisadorNaoPrecisaPassarOTempo;
-import jakarta.persistence.EntityManager;
+import com.api.VirtualLibrary.usecase.repositories.FindRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -15,14 +15,14 @@ import org.springframework.util.Assert;
 @Service
 public class CriarEmprestimoImpl implements CriarEmprestimo {
 
-    private UsuarioPesquisadorNaoPrecisaPassarOTempo usuarioPesquisadorNaoPrecisaPassarOTempo;
+    private final UsuarioPesquisadorNaoPrecisaPassarOTempo usuarioPesquisadorNaoPrecisaPassarOTempo;
 
-    private EntityManager manager;
+    private final FindRepository manager;
 
-    private EmprestimoRepository emprestimoRepository;
+    private final EmprestimoRepository emprestimoRepository;
 
     public CriarEmprestimoImpl(UsuarioPesquisadorNaoPrecisaPassarOTempo usuarioPesquisadorNaoPrecisaPassarOTempo,
-                               EntityManager manager,
+                               FindRepository manager,
                                EmprestimoRepository emprestimoRepository) {
         this.usuarioPesquisadorNaoPrecisaPassarOTempo = usuarioPesquisadorNaoPrecisaPassarOTempo;
         this.manager = manager;

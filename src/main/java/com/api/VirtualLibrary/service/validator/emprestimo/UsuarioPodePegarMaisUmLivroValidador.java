@@ -3,8 +3,6 @@ package com.api.VirtualLibrary.service.validator.emprestimo;
 import com.api.VirtualLibrary.adapters.input.request.EmprestimoRequest;
 import com.api.VirtualLibrary.domain.entities.Exemplar;
 import com.api.VirtualLibrary.domain.entities.Usuario;
-import com.api.VirtualLibrary.domain.enums.TipoDeCirculacao;
-import com.api.VirtualLibrary.domain.enums.TipoUsuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;

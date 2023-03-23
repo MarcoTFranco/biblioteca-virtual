@@ -14,7 +14,7 @@ import java.util.Optional;
 
 class CriarExemplarImplTest {
 
-    private LivroRepository livroRepository = Mockito.mock(LivroRepository.class);
+    private final LivroRepository livroRepository = Mockito.mock(LivroRepository.class);
 
     @Test
     @DisplayName("Deve lançar uma exceção quando o livro não for encontrado")

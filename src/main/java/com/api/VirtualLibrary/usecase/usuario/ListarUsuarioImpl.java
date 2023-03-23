@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class ListarUsuarioImpl implements ListarUsuario {
 
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public ListarUsuarioImpl(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;

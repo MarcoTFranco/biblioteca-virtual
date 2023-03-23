@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CriarLivroImpl implements CriarLivro {
 
-    private LivroRepository livroRepository;
+    private final LivroRepository livroRepository;
 
     public CriarLivroImpl(LivroRepository livroRepository) {
         this.livroRepository = livroRepository;

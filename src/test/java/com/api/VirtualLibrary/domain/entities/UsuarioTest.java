@@ -2,23 +2,28 @@ package com.api.VirtualLibrary.domain.entities;
 
 import com.api.VirtualLibrary.domain.enums.TipoDeCirculacao;
 import com.api.VirtualLibrary.domain.enums.TipoUsuario;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UsuarioTest {
-    Usuario usuario = new Usuario("nome", "email", TipoUsuario.padrao);
-    Usuario pesquisador = new Usuario("João", "joao@gmail.com", TipoUsuario.pesquisador);
 
+    private Usuario usuario;
+    private Usuario pesquisador;
+
+    @BeforeEach
+    public void setUp(){
+        usuario = new Usuario("nome", "email", TipoUsuario.padrao);
+        pesquisador = new Usuario("João", "joao@gmail.com", TipoUsuario.pesquisador);
+    }
 
     @ParameterizedTest
     @DisplayName("Deveria retornar true ou false de acordo com o tipo de usuário")
@@ -41,11 +46,11 @@ class UsuarioTest {
     @Test
     @DisplayName("Deveria retornar false quando não tiver espaço para mais um emprestimo")
     void test3() {
-        List <Emprestimo> emprestimos = List.of(new Emprestimo(usuario, new Exemplar(), 10),
-                        new Emprestimo(usuario, new Exemplar(), 5),
-                        new Emprestimo(usuario, new Exemplar(), 7),
-                        new Emprestimo(usuario, new Exemplar(), 8),
-                        new Emprestimo(usuario, new Exemplar(), 9));
+        List<Emprestimo> emprestimos = List.of(new Emprestimo(usuario, new Exemplar(), 10),
+                new Emprestimo(usuario, new Exemplar(), 5),
+                new Emprestimo(usuario, new Exemplar(), 7),
+                new Emprestimo(usuario, new Exemplar(), 8),
+                new Emprestimo(usuario, new Exemplar(), 9));
         for (Emprestimo emprestimo : emprestimos) {
             usuario.addEmprestimo(emprestimo);
         }
@@ -56,7 +61,7 @@ class UsuarioTest {
     @Test
     @DisplayName("Deveria retornar false quando tiver um emprestimo em que não há atraso")
     void test4() {
-        List <Emprestimo> emprestimos = List.of(
+        List<Emprestimo> emprestimos = List.of(
                 new Emprestimo(usuario, new Exemplar(), 10),
                 new Emprestimo(usuario, new Exemplar(), 5),
                 new Emprestimo(usuario, new Exemplar(), 7));

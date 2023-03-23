@@ -17,9 +17,9 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/livros")
 public class LivroController {
 
-    private CriarLivro dadosNovoLivro;
+    private final CriarLivro dadosNovoLivro;
 
-    private ListarLivrosImpl listarLivro;
+    private final ListarLivrosImpl listarLivro;
 
     public LivroController(CriarLivroImpl dadosNovoLivro, ListarLivrosImpl listarLivro) {
         this.dadosNovoLivro = dadosNovoLivro;

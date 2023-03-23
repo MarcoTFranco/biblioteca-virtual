@@ -14,7 +14,8 @@ public class DevolucaoRequest {
     @ExistsId(className = Emprestimo.class)
     private Long idEmprestimo;
 
-    public DevolucaoRequest(@NotNull Long idUsuario, @NotNull Long idEmprestimo) {
+    public DevolucaoRequest(@NotNull Long idUsuario,
+                            @NotNull Long idEmprestimo) {
         this.idUsuario = idUsuario;
         this.idEmprestimo = idEmprestimo;
     }
